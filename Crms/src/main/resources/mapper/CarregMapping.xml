@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.subati.crms.dao.CarregDao">
+    <select id="getAllCarreg" resultType="com.subati.crms.bean.Carreg">
+        SELECT * FROM carregistration
+        <if test="car_number !=null ">
+            WHERE car_number like #{car_number}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="getCarregCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM carregistration
+        <if test="car_number !=null ">
+            WHERE car_number like #{car_number}
+        </if>
+    </select>
+
+    <insert id="addCarreg">
+        INSERT INTO carregistration
+        (driver_name,car_number,car_model,reg_time)
+        VALUE(#{driver_name},#{car_number},#{car_model},#{reg_time})
+    </insert>
+    
+    <delete id="deleteCarreg">
+        DELETE FROM carregistration WHERE id = #{id}
+    </delete>
+
+    <select id="getUpdateCarrag" resultType="com.subati.crms.bean.Carreg">
+        SELECT * FROM carregistration WHERE id = #{id}
+    </select>
+
+    <update id="editCarreg">
+        UPDATE carregistration SET driver_name = #{driver_name} , car_number = #{car_number} ,
+        car_model = #{car_model} , reg_time = #{reg_time} WHERE id = #{id}
+    </update>
+</mapper>

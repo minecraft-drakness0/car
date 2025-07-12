@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.subati.crms.dao.PartsWDao">
+    <select id="getAllPartsW" resultType="com.subati.crms.bean.PartsW">
+        SELECT * FROM partswarehousing
+        <if test="part_number !=null ">
+            WHERE part_number like #{part_number}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="getPartsWCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM partswarehousing
+        <if test="part_number !=null ">
+            WHERE part_number like #{part_number}
+        </if>
+    </select>
+
+    <insert id="addPartsW">
+        INSERT INTO partswarehousing
+        (part_number,storage_quantity,inventory_quantity,price)
+        VALUE(#{part_number},#{storage_quantity},#{inventory_quantity},#{price})
+    </insert>
+
+    <delete id="deletePartsW">
+        DELETE FROM partswarehousing WHERE id = #{id}
+    </delete>
+
+    <select id="getUpdatePartsW" resultType="com.subati.crms.bean.PartsW">
+        SELECT * FROM partswarehousing WHERE id = #{id}
+    </select>
+
+    <update id="editPartsW">
+        UPDATE partswarehousing SET part_number = #{part_number} , storage_quantity = #{storage_quantity} ,
+        inventory_quantity = #{inventory_quantity} , price = #{price} WHERE id = #{id}
+    </update>
+</mapper>

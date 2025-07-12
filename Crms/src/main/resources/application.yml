@@ -1,0 +1,16 @@
+# mysql
+spring:
+  datasource:
+    #mysql配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/easyproject?useUnicode=true&characterEnco
+    username: root
+    password: root
+
+Mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.model
+
+#服务端接口改成9000，因为前端使用vue时，vue会占用8080（vue默认接口8080），改后端比前端简单好改
+server:
+  port: 9000

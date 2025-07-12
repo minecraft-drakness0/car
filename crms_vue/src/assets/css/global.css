@@ -1,0 +1,19 @@
+/* 全局样式 */
+HTML,body,#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 卡片区域 !important 提高样式级别 */
+.el-card {
+    box-shadow: 0 1px 1px rgba(0, 9, 10, 0.15) !important;
+}
+
+/* 表格样式 */
+.el-table {
+    margin-top: 15px;
+    font-size: 14px;
+    font-family: PingFang SC;
+    min-width: 350px;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.subati.crms.dao.CarrepDao">
+    <select id="getAllCarrep" resultType="com.subati.crms.bean.Carrep">
+        SELECT * FROM carrepair
+        <if test="car_number !=null ">
+            WHERE car_number like #{car_number}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="getCarrepCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM carrepair
+        <if test="car_number !=null ">
+            WHERE car_number like #{car_number}
+        </if>
+    </select>
+    <select id="getAll" resultType="com.subati.crms.bean.Carrep">
+        SELECT * FROM carrepair
+    </select>
+
+    <insert id="addCarrep">
+        INSERT INTO carrepair
+        (car_number,employee_id,repairlist_id,repair_items,repair_time)
+        VALUE(#{car_number},#{employee_id},#{repairlist_id},#{repair_items},#{repair_time})
+    </insert>
+</mapper>

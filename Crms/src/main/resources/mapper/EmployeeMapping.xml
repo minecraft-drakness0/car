@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.subati.crms.dao.EmployeeDao">
+    <select id="getAllEmployee" resultType="com.subati.crms.bean.EmployeeInfor">
+        SELECT * FROM employeeinformation
+        <if test="employee_id !=null ">
+            WHERE employee_id like #{employee_id}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="getEmployeeCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM employeeinformation
+        <if test="employee_id !=null ">
+            WHERE employee_id like #{employee_id}
+        </if>
+    </select>
+
+    <insert id="addEmployee">
+        INSERT INTO employeeinformation
+        (employee_id,employee_name,employee_salary)
+        VALUE(#{employee_id},#{employee_name},#{employee_salary})
+    </insert>
+
+    <delete id="deleteEmployee">
+        DELETE FROM employeeinformation WHERE id = #{id}
+    </delete>
+
+    <select id="getUpdateEmployee" resultType="com.subati.crms.bean.EmployeeInfor">
+        SELECT * FROM employeeinformation WHERE id = #{id}
+    </select>
+    <select id="getEmployeeInfor" resultType="com.subati.crms.bean.EmployeeInfor">
+        SELECT * FROM  employeeinformation WHERE employee_id = #{eid}
+    </select>
+
+    <update id="editEmployee">
+        UPDATE employeeinformation SET employee_id = #{employee_id} , employee_name = #{employee_name} ,
+        employee_salary = #{employee_salary} WHERE id = #{id}
+    </update>
+</mapper>
